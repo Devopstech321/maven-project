@@ -9,7 +9,7 @@ pipeline
         }
         stage ('create artifact')
         {
-           steps {withMaven(globalMavenSettingsConfig: jdk: 'JAVA-HOME', maven: 'Maven_Home', mavenSettingsConfig:) {
+           steps { withMaven( jdk: 'JAVA-HOME', maven: 'Maven_Home') {
         sh 'mvn package'
 }} 
         }
