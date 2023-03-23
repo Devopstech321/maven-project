@@ -10,7 +10,7 @@ pipeline
         stage ('create artifact')
         {
            steps { withMaven( jdk: 'JAVA-HOME', maven: 'Maven_Home') {
-        sh 'mvn package'
+        sh 'mvn clean package'
 }} 
         }
         stage ('deploy to tomcat')
