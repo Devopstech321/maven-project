@@ -7,18 +7,16 @@ pipeline
         {
             steps {git branch: 'master', url: 'https://github.com/Devopstech321/maven-project.git'}
         }
-        stage ('create artifact')
+        stage ('create artifact and soar analysis')
         {
-           steps { withMaven( jdk: 'JAVA-HOME', maven: 'Maven_Home') {
-        sh 'mvn clean package'
-}} 
-        }
-        stage ('sonar code analysis')
-        {
-            steps {withSonarQubeEnv(credentialsId: 'sonar') {
-    sh 'sonar:sonar'
-}}
-        }
+           steps { withMaven( jdk: 'JAVA-HOME', maven: 'Maven_Home') 
+           {
+           withSonarQubeEnv (credentialsId: 'sonar') 
+           { 
+              sh 'mvn clean package sonar:sonar'
+              }
+}
+                  }       }
         stage ('deploy to tomcat')
         {
             steps {sshagent(['tomcat-ssh']) {
