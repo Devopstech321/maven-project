@@ -13,6 +13,12 @@ pipeline
         sh 'mvn clean package'
 }} 
         }
+        stage ('sonar code analysis')
+        {
+            steps {withSonarQubeEnv(credentialsId: 'sonar') {
+    sh 'sonar:sonar'
+}}
+        }
         stage ('deploy to tomcat')
         {
             steps {sshagent(['tomcat-ssh']) {
