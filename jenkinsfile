@@ -8,20 +8,14 @@ pipeline
             steps {git branch: 'master', url: 'https://github.com/Devopstech321/maven-project.git'}
         }
         stage ('create artifact and soar analysis')
-        {
-           steps { withMaven( jdk: 'JAVA-HOME', maven: 'Maven_Home') 
+        { steps { withMaven(jdk: 'JAVA-HOME', maven: 'Maven_Home') 
            {
-           withSonarQubeEnv (credentialsId: 'sonar') 
+             withSonarQubeEnv(credentialsId: 'sonar') 
            { 
               sh 'mvn clean package sonar:sonar'
-              }
-}
-                  }       }
-        stage ('deploy to tomcat')
-        {
-            steps {sshagent(['tomcat-ssh']) {
-    sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/deploy-pipeline/webapp/target/*.war root@10.160.0.10:/tomcat/apache-tomcat-9.0.73/webapps'
-}}
+           }
+           }
+                }       
         }
     }
 }
