@@ -14,14 +14,9 @@ pipeline
            }
                 }
         } 
-    stage ('sonarqube analysis')
+        stage ('sonarqube analysis')
         {
-            environment {
-
-                scannerHome = tool 'SonarQube scanner'
-
-            }
-            steps {
+          steps {
              withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar:sonar') 
            { 
               sh 'sonar:sonar'
