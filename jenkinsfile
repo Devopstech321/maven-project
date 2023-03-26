@@ -16,8 +16,13 @@ pipeline
         } 
         stage ('sonar qube analysis')
         {
+            environment {
+
+                scannerHome = tool 'sonar_scanner'
+
+            }
             steps {
-             withSonarQubeEnv(credentialsId: 'sonar', installationName:'sonar') 
+             withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar') 
            { 
               sh 'sonar:sonar'
             }
