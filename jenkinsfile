@@ -14,6 +14,14 @@ pipeline
            }
                 }
         } 
+        stage ('sonar scaneer added')
+        {
+            steps{
+                withSonarQubeEnv(credentialsId: 'sonar') {
+   sh 'sonar:sonar'
+}
+            }
+        }
         stage ('sonar qube analysis')
         {
             environment {
