@@ -18,7 +18,7 @@ pipeline
         {
             environment {
 
-                scannerHome = tool 'sonar_scanner'
+                scannerHome = tool 'sonarQube scanner'
 
             }
             steps {
