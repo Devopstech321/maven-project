@@ -7,7 +7,7 @@ pipeline
         {
             steps {git branch: 'master', url: 'https://github.com/Devopstech321/maven-project.git'}
         }
-        stage ('create artifact and soar analysis')
+        stage ('create artifact')
         { steps { withMaven(jdk: 'JAVA-HOME', maven: 'Maven_Home') 
            {
              sh 'mvn package'
