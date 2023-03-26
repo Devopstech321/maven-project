@@ -10,16 +10,16 @@ pipeline
         stage ('create artifact')
         { steps { withMaven(jdk: 'JAVA-HOME', maven: 'Maven_Home') 
            {
-             sh 'mvn package'
+             sh 'mvn clean package'
            }
                 }
-        } 
+        }
         stage ('sonarqube analysis')
         {
           steps {
              withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar') 
            { 
-              sh 'sonar:sonar'
+             sh 'sonar:sonar'
             }
         }             
         }
