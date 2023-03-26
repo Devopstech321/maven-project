@@ -16,8 +16,8 @@ pipeline
         } 
         stage ('sonar scaneer added')
         {
-            steps{
-                withSonarQubeEnv(credentialsId: 'sonar') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar') {
    sh 'sonar:sonar'
 }
             }
