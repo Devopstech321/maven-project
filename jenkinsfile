@@ -14,14 +14,11 @@ pipeline
            }
                 }
         }
-        stage ('sonarqube analysis')
-        {
-          steps {
-             withSonarQubeEnv(credentialsId: 'Token-sonar', installationName: 'sonarscanner') 
-            { 
-             sh 'mvn sonar:sonar'
-            }
-        }             
-        }
+       stage ('create docker image')
+       {
+       steps {sh 'docker build -t 123doc123/dockerimage111:v1 .'}
+       }
+       stage ('docker image push to docker registory')
+       {steps{withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/') {sh 'docker push 123doc123/dockerimage111:v1'}}}
     }
 }
