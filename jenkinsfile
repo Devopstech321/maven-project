@@ -10,7 +10,7 @@ pipeline
         stage ('create artifact')
         { steps { withMaven(jdk: 'JAVA-HOME', maven: 'Maven_Home') 
            {
-             sh 'mvn clean package'
+             sh 'mvn package'
            }
                 }
         }
